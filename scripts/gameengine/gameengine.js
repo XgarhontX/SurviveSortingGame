@@ -75,33 +75,48 @@ class GameEngine {
         //Keys
         this.ctx.canvas.addEventListener("keydown", (e) => {
             switch (e.code) {
+                case  "ArrowLeft":
                 case "KeyA":
                     this.key_left = true;
                     break;
+                case "ArrowDown":
                 case "KeyS":
                     this.key_down = true;
                     break;
+                case "ArrowRight":
                 case "KeyD":
                     this.key_right = true;
                     break;
+                case "ArrowUp":
                 case "KeyW":
                     this.key_up = true;
                     break;
+                case "KeyR":
+                    this.key_restart = true;
+                    break;
+
             }
         }, false);
         this.ctx.canvas.addEventListener("keyup", (e) => {
             switch (e.code) {
+                case  "ArrowLeft":
                 case "KeyA":
                     this.key_left = false;
                     break;
+                case "ArrowDown":
                 case "KeyS":
                     this.key_down = false;
                     break;
+                case "ArrowRight":
                 case "KeyD":
                     this.key_right = false;
                     break;
+                case "ArrowUp":
                 case "KeyW":
                     this.key_up = false;
+                    break;
+                case "KeyR":
+                    this.key_restart = false;
                     break;
             }
         }, false);

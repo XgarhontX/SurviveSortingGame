@@ -7,9 +7,8 @@ SPAWNER_SWEEP_COOLDOWN = 45
 SPAWNER_SWEEP_INCREASE = 7
 
 class Spawner extends GameObject {
-    constructor(player) {
+    constructor() {
         super(0,0,0,0)
-        this.player = player
 
         this.cooldownSpawn_Current = SPAWNER_COOLDOWN_INIT
         this.cooldownSpawn_Reset = this.cooldownSpawn_Current

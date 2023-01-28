@@ -1,4 +1,4 @@
-const FALLINGBRICK_SPEED = 600 // 1
+const FALLINGBRICK_SPEED = 550 // 1
 
 
 class FallingBlock extends GameObjectBB {
@@ -36,14 +36,13 @@ class FallingBlock extends GameObjectBB {
                 if (this.BB.collide(entity.BB)) {
                     this.setBottomPosY(entity.BB.top)
                     this.hasFallen = true
-                    console.log("fallen")
                 }
             }
         })
     }
 
     draw() {
-        this.animator.drawFrame(this.posX, this.posY, this.color);
+        this.animator.drawFrame(this.posX + SCENE_MANAGER.camera.posX, this.posY + SCENE_MANAGER.camera.posY, this.color);
     }
 
     updateBB() {
