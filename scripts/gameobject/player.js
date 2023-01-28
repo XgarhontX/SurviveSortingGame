@@ -8,8 +8,9 @@ PLAYER_FRICTION = 500
 PLAYER_GRAVITY = 2000
 
 class Player extends GameObjectBB {
-    constructor(posX, posY) {
-        super(posX, posY, PLAYER_DIMENSIONS, PLAYER_DIMENSIONS, "red");
+    constructor() {
+        super(250, -PLAYER_DIMENSIONS-20, PLAYER_DIMENSIONS, PLAYER_DIMENSIONS, "red");
+        this.setCenteredPosX(this.posX)
         this.velocityX = 0
         this.velocityY = 0
         this.isGrounded = true
@@ -20,7 +21,7 @@ class Player extends GameObjectBB {
     handleCollisions() {
         //Ground
         if (this.lastBB.bottom > FRAME_HEIGHT) {
-            this.setBottomPosY(FRAME_HEIGHT)
+            this.posY -= this.BB.bottom - FRAME_HEIGHT
             this.velocityY = 0
             this.isGrounded = true
         }
@@ -40,18 +41,24 @@ class Player extends GameObjectBB {
                 if (this.BB.collide(entity.BB)) {
                     if (this.lastBB.bottom <= entity.BB.top) { //was above last
                         //stand on block
-                        this.setBottomPosY(entity.BB.top - 0.99)
+                        this.posY -= this.BB.bottom - entity.BB.top
                         this.velocityY = 0
                         this.isGrounded = true
                     } else if (this.lastBB.left >= entity.BB.right) { //from right
                         this.velocityX = 0
-                        this.posX = entity.BB.right + 0.99
+                        this.posX += entity.BB.right - this.BB.left
                     } else if (this.lastBB.right <= entity.BB.left) { //from left
                         this.velocityX = 0
-                        this.setRightPosX(entity.BB.left - 0.99)
-                    } else { //was below last
+                        this.posX -= this.BB.right - entity.BB.left
+                    } else if (this.lastBB.top <= entity.BB.bottom) { //was below last
                         // swish and die
-                        this.removeFromWorld = true
+                        if (!this.isGrounded) {
+                            this.posY += entity.BB.bottom - this.BB.top
+                            this.velocityX /= 3
+                            this.velocityY = FALLINGBRICK_SPEED
+                        } else {
+                            this.alive = false
+                        }
                     }
                     this.updateBB()
                 }
@@ -60,17 +67,20 @@ class Player extends GameObjectBB {
     }
 
     update() {
-        this.updateMovement()
-        this.saveLastBB()
-        this.updateBB()
-        this.handleCollisions()
-
         if (this.alive) {
+            this.updateMovement()
+            this.saveLastBB()
+            this.updateBB()
+            this.handleCollisions()
             this.score += GAME_ENGINE.clockTick
-            this.draw()
         }
     }
 
+    draw() {
+        if (this.alive) {
+            this.animator.drawFrame(this.posX, this.posY, this.color);
+        }
+    }
     updateMovement() {
         //WASD
         if (GAME_ENGINE.key_right) {
@@ -90,10 +100,10 @@ class Player extends GameObjectBB {
         if (GAME_ENGINE.key_up) {
             if (this.isGrounded) {
                 this.velocityY = -PLAYER_JUMP_VEL
-                this.isGrounded = false
             }
         }
-        if (GAME_ENGINE.key_down) {
+        this.isGrounded = false
+        if (GAME_ENGINE.key_down && !this.isGrounded) {
             this.velocityY += PLAYER_GROUND_POUND_ADDITIONAL_ACCEL * GAME_ENGINE.clockTick
         }
 

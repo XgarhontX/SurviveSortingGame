@@ -6,6 +6,6 @@ class HUD extends GameObject {
     }
 
     draw() {
-        this.animator.drawFrame(this.posX, this.posY, this.player.score)
+        this.animator.drawFrame(this.posX, this.posY, Math.floor(this.player.score))
     }
 }

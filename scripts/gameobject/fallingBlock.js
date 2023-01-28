@@ -1,4 +1,4 @@
-const FALLINGBRICK_SPEED = 500 // 1
+const FALLINGBRICK_SPEED = 600 // 1
 
 
 class FallingBlock extends GameObjectBB {
@@ -17,7 +17,7 @@ class FallingBlock extends GameObjectBB {
             this.handleCollisions()
             this.updateBB()
         }
-        this.draw()
+        // this.draw()
     }
 
     updateMovement() {
@@ -40,6 +40,10 @@ class FallingBlock extends GameObjectBB {
                 }
             }
         })
+    }
+
+    draw() {
+        this.animator.drawFrame(this.posX, this.posY, this.color);
     }
 
     updateBB() {

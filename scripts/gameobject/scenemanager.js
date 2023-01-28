@@ -8,9 +8,10 @@ class SceneManager {
         this.clearWorld()
         switch (levelName) {
             case "title":
+
                 break;
             case "game1":
-                let player = new Player(250, 850)
+                let player = new Player()
                 GAME_ENGINE.addEntity(player)
                 GAME_ENGINE.addEntity(new HUD(player))
                 GAME_ENGINE.addEntity(new Spawner(player))
@@ -18,6 +19,10 @@ class SceneManager {
             default:
                 break;
         }
+    }
+
+    onLose() {
+
     }
 
     clearWorld() {

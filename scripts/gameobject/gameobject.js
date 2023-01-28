@@ -10,11 +10,11 @@ class GameObject {
     }
 
     update() {
-        this.draw();
+        // this.draw();
     }
 
     draw() {
-        this.animator.drawFrame(this.posX, this.posY, this.color);
+        // this.animator.drawFrame(this.posX, this.posY, this.color);
     }
 
     getCenteredPosX() {
@@ -31,7 +31,7 @@ class GameObject {
     }
 
     setCenteredPosX(centerPosX) {
-        this.posX = centerPosX (this.width/2)
+        this.posX = centerPosX - (this.width/2)
     }
     setCenteredPosY(centerPosY) {
         this.posY = centerPosY - (this.height/2)
