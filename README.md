@@ -3,6 +3,8 @@ You are a process with an impossible job to finish the bogosorting algorithm. <b
 If you get crushed by a sorting item, you will be killed. <br> 
 *How long can you survive O(∞)?* <br>
 <img src="./assets/Preview.png" alt="Preview" width="200"/>
+### Play Now!
+https://xgarhontx.github.io/SurviveSortingGame/
 
 ## Controls
 WASD or Arrow Keys <br>
