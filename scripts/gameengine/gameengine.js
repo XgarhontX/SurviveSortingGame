@@ -72,7 +72,7 @@ class GameEngine {
             this.rightclick = getXandY(e);
         });
 
-        //Keys
+        //Keys https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
         this.ctx.canvas.addEventListener("keydown", (e) => {
             switch (e.code) {
                 case  "ArrowLeft":
@@ -87,6 +87,7 @@ class GameEngine {
                 case "KeyD":
                     this.key_right = true;
                     break;
+                case "Space":
                 case "ArrowUp":
                 case "KeyW":
                     this.key_up = true;
@@ -111,6 +112,7 @@ class GameEngine {
                 case "KeyD":
                     this.key_right = false;
                     break;
+                case "Space":
                 case "ArrowUp":
                 case "KeyW":
                     this.key_up = false;

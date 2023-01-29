@@ -8,7 +8,7 @@ https://xgarhontx.github.io/SurviveSortingGame/
 
 ## Controls
 WASD or Arrow Keys <br>
-- W: Jump
+- W & Space: Jump
 - A & D: Move
 - S: Ground Pound
 - R: Restart
